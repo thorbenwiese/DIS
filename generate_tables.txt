@@ -1,0 +1,77 @@
+connect to vsisp user vsisp37 using rd05dqCU;
+
+CREATE TABLE estate_agent (
+    name      varchar(20),
+    address   varchar(50),
+    login     varchar(15),
+    password  varchar(15)
+);
+
+CREATE TABLE estate (
+    id              int NOT NULL,
+    city            varchar(30),
+    postal_code     int,
+    street          varchar(15),
+    street_number   int,
+    square_area     int,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE apartment (
+    id                  int,
+    floor               int,
+    rent                int,
+    rooms               int,
+    balcony             smallint CHECK (balcony in (0,1)),
+    built_in_kitchen    smallint CHECK (built_in_kitchen in (0,1)),
+    FOREIGN KEY (id) REFERENCES estate(id)
+);
+
+CREATE TABLE house (
+    id                  int,
+    floors              int,
+    price               int,
+    garden              smallint CHECK (garden in (0,1)),
+    FOREIGN KEY (id) REFERENCES estate(id)
+);
+
+CREATE TABLE person (
+    first_name    varchar(20),
+    name          varchar(20),
+    address       varchar(50)
+);
+
+CREATE TABLE contract (
+    contract_no   int NOT NULL,
+    date          date,
+    place         varchar(30),
+    PRIMARY KEY (contract_no)
+);
+
+CREATE TABLE tenancy_contract (
+    contract_no         int,
+    start_date          date,
+    duration            int,
+    additional_costs    int,
+    FOREIGN KEY (contract_no) REFERENCES contract(contract_no)
+);
+
+CREATE TABLE purchase_contract (
+    contract_no         int,
+    no_of_installments  int,
+    interest_rate       int,
+    FOREIGN KEY (contract_no) REFERENCES contract(contract_no)
+);
+
+select * from estate_agent;
+select * from estate;
+select * from house;
+select * from apartment;
+select * from person;
+select * from contract;
+select * from tenancy_contract;
+select * from purchase_contract;
+
+
+commit work;
+connect reset;

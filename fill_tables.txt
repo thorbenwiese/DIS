@@ -1,0 +1,37 @@
+connect to vsisp user vsisp37 using rd05dqCU;
+
+INSERT INTO estate_agent (name, address, login, password) values ('Robert', 'Hauptstr. 2', 'robbie', '12345');
+
+INSERT INTO estate (id, city, postal_code, street, street_number, square_area) values (001, 'Hamburg', '20097', 'Suederstr.', 15, 150);
+INSERT INTO estate (id, city, postal_code, street, street_number, square_area) values (002, 'Hamburg', '20537', 'Borgfelder Str.', 79, 74);
+
+INSERT INTO house (id, floors, price, garden) values (002, 2, 200000, 0);
+INSERT INTO house (id, floors, price, garden) values (001, 3, 450000, 1);
+
+INSERT INTO apartment (id, floor, rent, rooms, balcony, built_in_kitchen) values (001, 2, 1200, 3, 0, 1);
+INSERT INTO apartment (id, floor, rent, rooms, balcony, built_in_kitchen) values (002, 4, 800, 2, 0, 0);
+
+INSERT INTO person (first_name, name, address) values ('Hans', 'Mueller', 'Dorfstr. 12');
+INSERT INTO person (first_name, name, address) values ('Peter', 'Schmidt', 'Hauptstr. 99');
+
+INSERT INTO contract (contract_no, date, place) values (98765, '01.02.2006', 'Berlin');
+INSERT INTO contract (contract_no, date, place) values (66768, '29.04.2012', 'Dresden');
+
+INSERT INTO tenancy_contract (contract_no, start_date, duration, additional_costs) values (98765, '01.01.2000', 4, 3000);
+INSERT INTO tenancy_contract (contract_no, start_date, duration, additional_costs) values (66768, '13.11.2009', 9, 15000);
+
+INSERT INTO purchase_contract (contract_no, no_of_installments, interest_rate) values (66768, 8, 60);
+INSERT INTO purchase_contract (contract_no, no_of_installments, interest_rate) values (98765, 4, 80);
+
+select * from estate_agent;
+select * from estate;
+select * from house;
+select * from apartment;
+select * from person;
+select * from contract;
+select * from tenancy_contract;
+select * from purchase_contract;
+
+
+commit work;
+connect reset;

@@ -1,0 +1,13 @@
+connect to vsisp user vsisp37 using rd05dqCU;
+
+DROP TABLE estate_agent;
+DROP TABLE estate;
+DROP TABLE apartment;
+DROP TABLE house;
+DROP TABLE person;
+DROP TABLE contract;
+DROP TABLE tenancy_contract;
+DROP TABLE purchase_contract;
+
+commit work;
+connect reset;
